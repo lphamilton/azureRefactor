@@ -31,3 +31,18 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+    
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+  inputs:
+    Contents: |
+     **\WheelOfFortune\bin\**\*.exe
+     **\WheelOfFortune\bin\**\*.dll
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
