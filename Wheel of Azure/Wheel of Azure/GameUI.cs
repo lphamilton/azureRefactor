@@ -27,6 +27,34 @@ namespace Wheel_of_Azure
         }
 
         /// <summary>
+        /// Prompts user to input the number of players and enter their names. Returns the list of player names.
+        /// </summary>
+        /// <returns>A string list containing the player names.</returns>
+        public List<string> GetPlayerNames()
+        {
+            bool valid = false;
+            int totalPlayers;
+            List<string> names = new List<string>();
+
+            do
+            {
+                Console.Write("How many players? ");
+                string input = Console.ReadLine();
+                valid = Int32.TryParse(input, out totalPlayers) && totalPlayers >= 1 ? Int32.TryParse(input, out totalPlayers) : false;
+            } while (!valid);
+
+
+            for (int i = 0; i < totalPlayers; i++)
+            {
+                Console.Write("Please enter player {0} name: ", i + 1);
+                string name = Console.ReadLine();
+                names.Add((name == "") ? "Player" + i : name);
+            }
+            return names;
+        }
+
+
+        /// <summary>
         /// Prompts the player to indicate whether they want to Spin(1) or Solve(2).
         /// </summary>
         /// <returns>1 if players wishes to spin, 2 if the player wishes to solve.</returns>
@@ -113,6 +141,15 @@ namespace Wheel_of_Azure
         }
 
         /// <summary>
+        /// Displays a message indicating the current player's turn.
+        /// </summary>
+        /// <param name="playerOne"></param>
+        internal void DisplayPlayerTurn(Player playerOne)
+        {
+            Console.WriteLine($"\nPlayer {playerOne.Name}, it's now your turn!!!\n");
+        }
+
+        /// <summary>
         ///  Displays the player's Turn Score.
         /// </summary>
         /// <param name="playerOne">The current player.</param>
@@ -127,17 +164,21 @@ namespace Wheel_of_Azure
         /// <param name="board">The PhraseBoard to be displayed.</param>
         internal void DisplayBoard(PhraseBoard board)
         {
-            Console.WriteLine(board.GetBoardString());
+            Console.WriteLine("\n" + board.GetBoardString() + "\n");
         }
 
         /// <summary>
         /// Displays a congratulatory message to the winner.
         /// </summary>
         /// <param name="playerOne">The winning player.</param>
-        internal void DisplayWinner(Player playerOne)
+        internal void DisplayWinner(List<Player> players, int roundWinner)
         {
-            Console.WriteLine("You win!");
+            if (players.Count == 1)
+                Console.WriteLine($"\nYou win!");
+            else
+                Console.WriteLine($"\nPlayer {players[roundWinner].Name} wins the round and ${players[roundWinner].TurnScore}!!!");
         }
+
 
         /// <summary>
         /// Displays the amount resulting from spinning the wheel.
@@ -185,6 +226,15 @@ namespace Wheel_of_Azure
         }
 
         /// <summary>
+        /// Displays a message announcing that the player's attempt to solve the puzzle was successful.
+        /// </summary>
+        /// <param name="solveGuess"></param>
+        internal void DisplaySolveGuessSuccess(string solveGuess)
+        {
+            Console.WriteLine($"You are correct! The answer is {solveGuess}.");
+        }
+
+        /// <summary>
         /// Repeatedly prompts the user to enter a single letter until the input is valid. Returns the single letter as a char.
         /// </summary>
         /// <param name="spinGuess"></param>
@@ -197,6 +247,27 @@ namespace Wheel_of_Azure
                 spinGuess = Console.ReadLine().ToLower();
             }
             return spinGuess[0];
+        }
+        /// <summary>
+        /// Sets the text color to a different color for each player
+        /// </summary>
+        /// <param name="playerNumber"></param>
+        public void SetPlayerTextColor(int playerNumber)
+        {
+            switch (playerNumber % 4)
+            {
+                case 0: Console.ForegroundColor = ConsoleColor.Cyan; break;
+                case 1: Console.ForegroundColor = ConsoleColor.Yellow; break;
+                case 2: Console.ForegroundColor = ConsoleColor.Green; break;
+                default: Console.ForegroundColor = ConsoleColor.Magenta; break;
+            }
+        }
+        /// <summary>
+        /// Resets the text color to white
+        /// </summary>
+        public void ResetTextColorToWhite()
+        {
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
     }
