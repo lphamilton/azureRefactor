@@ -4,6 +4,7 @@ namespace Wheel_of_Azure
 {
     public class Wheel
     {
+        public const int LoseATurn = 0;
         private Random random;
         public readonly int[] WheelOfAzure = {
                 2500,
@@ -36,6 +37,12 @@ namespace Wheel_of_Azure
         {
             random = new Random();
         }
+
+        public Wheel(int[] wheelAmounts) : this()
+        {
+            WheelOfAzure = wheelAmounts;
+        }
+
 
         /// <summary>
         /// Randomly generates a number from the wheel
