@@ -4,8 +4,11 @@ using System.Collections.Generic;
 
 namespace Wheel_of_Azure
 {
+
     public class PhraseBoard
     {
+        public const int PointsEarnedForSolving = 5000;
+
         private string CorrectAnswer;
         private List<char> Board;
         private HashSet<char> Guesses;
@@ -49,28 +52,25 @@ namespace Wheel_of_Azure
             }
         }
 
+        /// <summary>
+        /// Returns true if all the letters in the phrase have been correctly guessed.
+        /// </summary>
+        /// <returns></returns>
         public bool IsGameOver()
         {
             return LetterCounts.Keys.Count == 0;
         }
 
         /// <summary>
-        /// Displays the phrase to the console. Returns void.
+        /// Returns a string displaying which letters have been correctly guessed. Unsolved letters are displayed as asterisks.
         /// </summary>
-        public void DisplayBoard()
+        /// <returns>A string that displays the correctly guessed letters.</returns>
+        public string GetBoardString()
         {
             if (!IsGameOver())
-            {
-                foreach (char letter in Board)
-                {
-                    Console.Write(letter);
-                }
-                Console.WriteLine();
-            }
+                return new string(Board.ToArray());
             else
-            {
-                Console.WriteLine(CorrectAnswer);
-            }
+                return CorrectAnswer;
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Wheel_of_Azure
             if (guessedString == CorrectAnswer)
             {
                 LetterCounts.Clear();
-                return 5000;
+                return PointsEarnedForSolving;
             }
             else
             {

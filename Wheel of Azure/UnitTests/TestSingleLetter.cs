@@ -11,7 +11,7 @@ namespace UnitTests_SingleLetter
         [Fact]
         public void TestMethod1()
         {
-            char result = Program.SingleLettersOnly("b");
+            char result = GameUI.SingleLettersOnly("b");
             Assert.Equal('b', result);
         }
 

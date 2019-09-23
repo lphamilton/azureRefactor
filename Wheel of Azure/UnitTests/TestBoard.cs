@@ -7,21 +7,20 @@ namespace UnitTests
 {
     public class TestBoard
     {
-        [Fact]
-        public void TestDisplayBoard()
-        {
-            PhraseBoard b = new PhraseBoard("ab");
-            StringWriter writer = new StringWriter();
-            Console.SetOut(writer);
-            b.DisplayBoard();
-            Assert.Equal("**\r\n", writer.ToString());
 
-            b = new PhraseBoard("a b'c-d");
-            writer = new StringWriter();
-            Console.SetOut(writer);
-            b.DisplayBoard();
-            Assert.Equal("* *'*-*\r\n", writer.ToString());
+        [Theory]
+        [InlineData("dog", new char[] { 'a', 'b', 'c' }, "***")]
+        [InlineData("dog", new char[] { 'g' }, "**g")]
+        [InlineData("dog", new char[] { 'o','g'}, "*og")]
+        [InlineData("dog", new char[] { 'd', 'o', 'g' }, "dog")]
+        public void TestGetBoardString(string phrase, char[] guesses, string expected)
+        {
+            var sut = new PhraseBoard(phrase);
+            foreach (var guess in guesses) sut.MakeGuess(100, guess);
+            string actual = sut.GetBoardString();
+            Assert.Equal(expected, actual);
         }
+
 
         [Fact]
         public void TestMakeGuess()
