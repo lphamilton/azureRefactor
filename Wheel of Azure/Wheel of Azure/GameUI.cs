@@ -16,7 +16,7 @@ namespace Wheel_of_Azure
     public class GameUI
     {
         /// <summary>
-        /// Prompts plyaer to enter their name and returns the value entered.
+        /// Prompts player to enter their name and returns the value entered.
         /// </summary>
         /// <returns>a string containing the player's name.</returns>
         internal string GetPlayerName()
@@ -29,7 +29,7 @@ namespace Wheel_of_Azure
         /// <summary>
         /// Prompts the player to indicate whether they want to Spin(1) or Solve(2).
         /// </summary>
-        /// <returns>1 if players wishes to spin, 2 if the player wishes to solve the puzzle.</returns>
+        /// <returns>1 if players wishes to spin, 2 if the player wishes to solve.</returns>
         internal int GetUserChoice()
         {
             bool isNumeric = false;
@@ -51,8 +51,8 @@ namespace Wheel_of_Azure
         {
             Console.Write("\nPress any key to exit: ");
 
-            // Note: Console.ReadKey() won't work when redirecting the Input from a StringReader during unit testing
-            //        Also, excluded from code coverage because it is not possible Console.ReadKey() doesn't work in the unit tests.
+            // Note: Console.ReadKey() won't work when redirecting the Input from a StringReader during unit testing.
+            //       Therefore excluded from code coverage because Console.ReadKey() is untestable.
 
             // When this code is being executed during unit testing:
             //      Console.IsOutpuRedirected = true 
@@ -69,7 +69,7 @@ namespace Wheel_of_Azure
         }
 
         /// <summary>
-        /// Prompts the player to make a guess. In the event of bad input or a previously guessed letter the player is prompted again.
+        /// Prompts the player to guess a letter and returns the response as a char. If the input is invalid or a previously guessed letter, the player is prompted again.
         /// </summary>
         /// <param name="phraseBoard">The current PhraseBoard being guessed.</param>
         /// <returns>The letter the player has guessed.</returns>
@@ -93,7 +93,7 @@ namespace Wheel_of_Azure
         }
 
         /// <summary>
-        /// Prompts the player to solve the phrase.
+        /// Prompts the player to solve the phrase and returns the response as a string.
         /// </summary>
         /// <returns>The player's guess for the phrase.</returns>
         internal string GetSolveGuess()
@@ -149,7 +149,7 @@ namespace Wheel_of_Azure
         }
 
         /// <summary>
-        /// Displays how many letters the player guessed correctly and the points earned for the correct guess.
+        /// Displays message indicating the player guessed correctly and the points earned for the correct guess.
         /// </summary>
         /// <param name="spinGuessLetter">The letter the player guessed.</param>
         /// <param name="pointsEarned">The points earned for guessing correctly.</param>
@@ -176,7 +176,7 @@ namespace Wheel_of_Azure
         }
 
         /// <summary>
-        /// Displays a letter indicating that the attempt to solve the puzzle was unsuccessful.
+        /// Displays a message indicating that the attempt to solve the puzzle was unsuccessful.
         /// </summary>
         /// <param name="solveGuess"></param>
         internal void DisplaySolveGuessFailure(string solveGuess)
@@ -185,7 +185,7 @@ namespace Wheel_of_Azure
         }
 
         /// <summary>
-        /// Repeatedly prompts the user to enter a single letter until the input is validated to be a single letter.
+        /// Repeatedly prompts the user to enter a single letter until the input is valid. Returns the single letter as a char.
         /// </summary>
         /// <param name="spinGuess"></param>
         /// <returns>A char value for the single letter entered by the player.</returns>
