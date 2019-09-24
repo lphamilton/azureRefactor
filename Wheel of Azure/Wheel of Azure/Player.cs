@@ -26,6 +26,11 @@ namespace Wheel_of_Azure
             TurnScore += i;
         }
 
+        public void DeductCurrentScore(int i)
+        {
+            TurnScore -= i;
+        }
+
         /// <summary>
         /// Resets the current code and adds to total
         /// </summary>
