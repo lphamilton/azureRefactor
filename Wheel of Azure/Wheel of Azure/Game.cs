@@ -12,15 +12,21 @@ namespace Wheel_of_Azure
         public PhraseBoard phraseBoard;
         //public Player playerOne;
         public List<Player> players = new List<Player>();
-         
+        private CategorizedPhrases catPhrase = new CategorizedPhrases();
+
 
         private GameUI ui = new GameUI();
-        private const string HardCodedPhrase = "abc";
+       // private const string HardCodedPhrase = "abc";
 
 
         public Game()
         {
-            phraseBoard = new PhraseBoard(HardCodedPhrase);
+            string Category = catPhrase.GetCatPhrase()[0];
+            string Phrase = catPhrase.GetCatPhrase()[1];
+            Console.WriteLine("Your random category is going to be " + Category + "!");
+            Console.WriteLine(Phrase);
+            phraseBoard = new PhraseBoard(Phrase);
+            //phraseBoard = new PhraseBoard(HardCodedPhrase);
         }
 
         /// <summary>

@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Wheel_of_Azure
 {
-    public class CategorizedPhrase
+    class CategorizedPhrases
     {
+
         public int r;
-        
+        private string resCat;
         /*<summary>
         
              */
@@ -25,29 +23,35 @@ namespace Wheel_of_Azure
             "Microsoft",
             "City"
         };
-        public string GetCat()
-        {
-            Random random = new Random();
-            r = random.Next(categories.Count);
-            string resCat = categories[r];
-            return resCat;
+        /* public string GetCat()
+         {   
+             Random random = new Random();
+             r = random.Next(categories.Count);
+             resCat = categories[r];
+             Console.WriteLine(r);
+             Console.WriteLine(resCat);
+             return resCat;
 
-        }
-        public string GetCatPhrase()
+         }*/
+        public string[] GetCatPhrase()
         {
             string filePath;
-            switch (r)
+            Random random = new Random();
+            r = random.Next(categories.Count);
+            resCat = categories[r];
+            //   Console.WriteLine(resCat+"!!!");
+            switch (resCat)
             {
-                case 0:
-                     filePath = Path.GetFullPath(@"..\..\CategorizedPhrases\holiday.txt");
+                case "Holiday":
+                    filePath = Path.GetFullPath(@"..\..\CategorizedPhrases\holiday.txt");
                     break;
-                case 1:
+                case "Movies":
                     filePath = Path.GetFullPath(@"..\..\CategorizedPhrases\movies.txt");
                     break;
-                case 2:
+                case "Microsoft":
                     filePath = Path.GetFullPath(@"..\..\CategorizedPhrases\microsoft.txt");
                     break;
-                case 3:
+                case "City":
                     filePath = Path.GetFullPath(@"..\..\CategorizedPhrases\city.txt");
                     break;
                 default:
@@ -55,14 +59,15 @@ namespace Wheel_of_Azure
                     break;
 
             }
-            
+
             string readText = File.ReadAllText(filePath);
             string[] words = readText.Split(',');
             Random rand = new Random();
             int i = rand.Next(words.Length);
             string phrase = words[i];
-            return phrase;
+            return new string[] { resCat, phrase };
         }
-        
+
+
     }
 }
