@@ -61,8 +61,7 @@ namespace Wheel_of_Azure
 
             ui.ResetTextColorToWhite();
 
-            //ui.DisplayBoard(phraseBoard);
-            //foreach( var playerOne in players) ui.DisplayPlayerScore(playerOne);
+            ui.DisplayBoard(phraseBoard);
             ui.DisplayWinner(players, roundWinner);
 
             ui.GetExit();

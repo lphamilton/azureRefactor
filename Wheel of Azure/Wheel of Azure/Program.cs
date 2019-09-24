@@ -10,13 +10,15 @@ namespace Wheel_of_Azure
         public static void Main(string[] args)
         {
 
+            var game = new Game();
+
             if (args.Length > 0)
             {
-                StringReader reader = new StringReader(args[0]);
+                game.phraseBoard = new PhraseBoard(args[0]);
+                StringReader reader = new StringReader(args[1]);
                 Console.SetIn(reader);
             }
 
-            var game = new Game();
             game.Start();
 
         }

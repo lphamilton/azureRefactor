@@ -19,12 +19,12 @@ namespace Wheel_of_Azure
         /// Prompts player to enter their name and returns the value entered.
         /// </summary>
         /// <returns>a string containing the player's name.</returns>
-        internal string GetPlayerName()
-        {
-            Console.Write("Please enter your name: ");
-            string name = Console.ReadLine();
-            return name;
-        }
+        //internal string GetPlayerName()
+        //{
+        //    Console.Write("Please enter your name: ");
+        //    string name = Console.ReadLine();
+        //    return name;
+        //}
 
         /// <summary>
         /// Prompts user to input the number of players and enter their names. Returns the list of player names.
@@ -162,10 +162,25 @@ namespace Wheel_of_Azure
         ///  Displays the phrase board. Unsolved letters are displayed as asterisks.
         /// </summary>
         /// <param name="board">The PhraseBoard to be displayed.</param>
-        internal void DisplayBoard(PhraseBoard board)
+        [ExcludeFromCodeCoverage]
+        internal void DisplayBoardSimple(PhraseBoard board)
         {
             Console.WriteLine("\n" + board.GetBoardString() + "\n");
         }
+
+        internal void DisplayBoard(PhraseBoard board)
+        {
+            var chars = board.GetBoardString();
+
+            string topAndBottom = "+" + String.Join("+", chars.Select(c =>(c==' ')? "   ":"---").ToArray()) + "+";
+            string middle = "|" + String.Join("|", chars.Select(c => (c=='*') ? "   ":" " + c + " ").ToArray()) + "|";
+            Console.WriteLine();
+            Console.WriteLine(topAndBottom);
+            Console.WriteLine(middle);
+            Console.WriteLine(topAndBottom);
+            Console.WriteLine();
+        }
+
 
         /// <summary>
         /// Displays a congratulatory message to the winner.
@@ -173,6 +188,7 @@ namespace Wheel_of_Azure
         /// <param name="playerOne">The winning player.</param>
         internal void DisplayWinner(List<Player> players, int roundWinner)
         {
+            
             if (players.Count == 1)
                 Console.WriteLine($"\nYou win!");
             else
