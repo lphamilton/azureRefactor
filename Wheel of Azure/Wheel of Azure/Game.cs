@@ -38,7 +38,7 @@ namespace Wheel_of_Azure
             int roundWinner = 0;
             
 
-            if (players.Count==1) ui.DisplayWelcomeMessage(players[0]);
+            ui.DisplayWelcomeMessage(players);
 
             while (!phraseBoard.IsGameOver())
             {

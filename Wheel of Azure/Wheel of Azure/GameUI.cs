@@ -46,10 +46,10 @@ namespace Wheel_of_Azure
 
             for (int i = 0; i < totalPlayers; i++)
             {
-                Console.Write("Please enter player {0} name: ", i + 1);
+                Console.Write("Please enter player {0}'s name: ", i + 1);
                 string name = Console.ReadLine();
-                names.Add((name == "") ? "Player" + i : name);
-            }
+                names.Add((name == "") ? "Player " + (i+1) : name);
+            } 
             return names;
         }
 
@@ -135,9 +135,20 @@ namespace Wheel_of_Azure
         /// Displays a friendly greeting to the player.
         /// </summary>
         /// <param name="playerOne">The player.</param>
-        internal void DisplayWelcomeMessage(Player playerOne)
+        internal void DisplayWelcomeMessage(List<Player> players)
         {
-            Console.WriteLine($"Welcome to Wheel of Azure {playerOne.Name}!");
+            if (players.Count == 1)
+            {
+                Console.WriteLine($"\nWelcome to Wheel of Azure {players[0].Name}!");
+            }
+            else
+            {
+                string playersString = String.Join(", ", players.Take(players.Count - 1).Select(p => p.Name))
+                                       + " and " + players[players.Count - 1].Name;
+                Console.WriteLine($"\nWelsome to the Wheel of Azure {playersString}!");
+
+            }
+            Console.WriteLine();
         }
 
         /// <summary>
@@ -146,7 +157,7 @@ namespace Wheel_of_Azure
         /// <param name="playerOne"></param>
         internal void DisplayPlayerTurn(Player playerOne)
         {
-            Console.WriteLine($"\nPlayer {playerOne.Name}, it's now your turn!!!\n");
+            Console.WriteLine($"\n{playerOne.Name}, it's now your turn!!!\n");
         }
 
         /// <summary>
