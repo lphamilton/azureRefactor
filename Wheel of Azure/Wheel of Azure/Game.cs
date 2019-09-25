@@ -83,6 +83,7 @@ namespace Wheel_of_Azure
 
             do
             {
+
                 ui.DisplayPlayerScore(playerOne);
                 ui.DisplayBoard(phraseBoard);
 
@@ -115,7 +116,7 @@ namespace Wheel_of_Azure
             }
 
             // Ask the user to guess a letter
-            char spinGuessLetter = ui.GetSpinGuessLetter(phraseBoard);
+            char spinGuessLetter = ui.GetSpinGuessLetter(phraseBoard, playerOne);
 
             //if the phrase contains the character, the program tells the user of this and tell them how much they won. 
             //It then goes back to the spin or solve function.

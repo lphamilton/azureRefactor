@@ -101,13 +101,14 @@ namespace Wheel_of_Azure
         /// Prompts the player to guess a letter and returns the response as a char. If the input is invalid or a previously guessed letter, the player is prompted again.
         /// </summary>
         /// <param name="phraseBoard">The current PhraseBoard being guessed.</param>
-        /// <returns>The letter the player has guessed.</returns>
-        internal char GetSpinGuessLetter(PhraseBoard phraseBoard)
+        /// <returns>The letter the player has guessed as a character</returns>
+        internal char GetSpinGuessLetter(PhraseBoard phraseBoard, Player player)
         {
             Console.Write("Guess a letter: ");
             string spinGuess = Console.ReadLine().ToLower();
+            HashSet<char> vowels = new HashSet<char> {'a', 'e', 'i', 'o','u'};
 
-            char spinGuessLetter = SingleLettersOnly(spinGuess); ;
+            char spinGuessLetter = SingleLettersOnly(spinGuess);
 
             //If the character has already been guessed, then it will prompt the user to type in one that has not.
             while (phraseBoard.HasGuessed(spinGuessLetter))
@@ -115,8 +116,34 @@ namespace Wheel_of_Azure
                 Console.Write($"{spinGuessLetter} has already been guessed. Guess again: ");
                 spinGuess = Console.ReadLine().ToLower();
 
-                spinGuessLetter = SingleLettersOnly(spinGuess); ;
+                spinGuessLetter = SingleLettersOnly(spinGuess);
             }
+
+            //If the character is a vowel, it will let user know the price and their total after purchasing
+            //If they cannot afford a vowel, they will be told and given the option to guess a consonant 
+            
+            if(vowels.Contains(spinGuessLetter))
+            {
+                Console.WriteLine("The price of a vowel is $600.");
+                if (player.TurnScore >= 600)
+                {
+                    player.DeductCurrentScore(600);
+                    Console.WriteLine("You've just bought the letter {0} and your total score is: ${1}", spinGuessLetter.ToString(), player.TurnScore);
+                } else
+                {
+                    bool isConsonant = false;
+                  
+
+                    while (!isConsonant)
+                    {
+                        Console.WriteLine("Looks like you're too broke to buy a vowel. Try guessing a consonant instead.");
+                        spinGuessLetter = SingleLettersOnly(Console.ReadLine());
+                        isConsonant = !vowels.Contains(spinGuessLetter);
+                        Console.WriteLine("isConsonant: {0}", isConsonant);
+                    }       
+                }
+            }
+
             return spinGuessLetter;
 
         }
