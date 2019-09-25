@@ -22,15 +22,9 @@ namespace Wheel_of_Azure
 
         public Game()
         {
-            //string Category = catPhrase.GetCatPhrase()[0];
-            //string Phrase = catPhrase.GetCatPhrase()[1];
-            //Console.WriteLine("Your random category is going to be " + Category + "!");
-            //Console.WriteLine(Phrase);
             
             phraseBoard = new PhraseBoard(catphrase.GetPhrase(catphrase.category));
-            //Console.WriteLine("CAT: {0} ", catphrase.category);
-            //Console.WriteLine("CAT: {0} ", catphrase.GetPhrase(catphrase.category));
-            //phraseBoard = new PhraseBoard(HardCodedPhrase);
+            
         }
 
         /// <summary>

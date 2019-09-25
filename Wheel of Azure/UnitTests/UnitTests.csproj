@@ -58,6 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TestCategorizedPhrases.cs" />
     <Compile Include="TestGame.cs" />
     <Compile Include="TestSingleLetter.cs" />
     <Compile Include="TestWheel.cs" />

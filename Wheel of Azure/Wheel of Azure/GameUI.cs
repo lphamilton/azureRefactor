@@ -151,11 +151,14 @@ namespace Wheel_of_Azure
             }
             Console.WriteLine();
         }
-
+        /// <summary>
+        /// Displays a randomly assigned category.
+        /// </summary>
+        /// <param name="catphrase"></param>
         internal void DisplayCat(CategorizedPhrases catphrase)
         {
-            catphrase.RandomizeCat();
-            Console.WriteLine($"\n{catphrase.category}, !\n");
+           
+            Console.WriteLine($"\n Your category today will be >>{catphrase.category}<< !!!\n");
 
         }
         /// <summary>

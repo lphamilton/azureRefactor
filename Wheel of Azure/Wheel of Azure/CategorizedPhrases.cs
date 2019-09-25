@@ -22,13 +22,15 @@ namespace Wheel_of_Azure
         
 
         //list of category strings
-        private List<string> categories = new List<string>
+        public readonly List<string> categories = new List<string>
         {
             "holiday",
             "movies",
             "microsoft",
             "city"
         };
+        /* The category will be randomized*/
+
         public void RandomizeCat()
         {
            
@@ -43,8 +45,7 @@ namespace Wheel_of_Azure
         {
             
             string filePath;
-            //   Console.WriteLine(resCat+"!!!");
-            switch (cat)
+             switch (cat)
             {
                 case "holiday":
                     filePath = Path.GetFullPath(@"..\..\CategorizedPhrases\holiday.txt");
