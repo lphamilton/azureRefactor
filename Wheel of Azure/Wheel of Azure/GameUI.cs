@@ -226,11 +226,17 @@ namespace Wheel_of_Azure
         /// <param name="playerOne">The winning player.</param>
         internal void DisplayWinner(List<Player> players, int roundWinner)
         {
-
+            string message;
             if (players.Count == 1)
-                Console.WriteLine($"\nYou win!");
+                message = "You win!";
             else
-                Console.WriteLine($"\nPlayer {players[roundWinner].Name} wins the round and ${players[roundWinner].TurnScore}!!!");
+                message = $"Player {players[roundWinner].Name} wins the round and ${players[roundWinner].TurnScore}!!!";
+
+            Console.WriteLine();
+            if (!Console.IsOutputRedirected)
+                DisplayBlinkingMessage(message);
+            else
+                Console.WriteLine(message);
         }
 
 
@@ -240,6 +246,7 @@ namespace Wheel_of_Azure
         /// <param name="wheelAmount"></param>
         internal void DisplayWheelAmount(int wheelAmount)
         {
+            if (!Console.IsOutputRedirected) DisplaySpinner();
             Console.WriteLine($"The wheel landed at ${wheelAmount}");
         }
 
@@ -322,6 +329,55 @@ namespace Wheel_of_Azure
         public void ResetTextColorToWhite()
         {
             Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        /// <summary>
+        /// Displays a spinning console animation
+        /// </summary>
+        /// <param name="iterations">The number of times the spinning character is rotated</param>
+        /// <param name="delay">time in milliseconds between displaying the character</param>
+        [ExcludeFromCodeCoverage]
+        public void DisplaySpinner(int iterations = 20, int delay = 30)
+        {
+            for (int counter = 0; counter < iterations; counter++)
+            {
+                switch (counter % 4)
+                {
+                    case 0: Console.Write("/"); break;
+                    case 1: Console.Write("-"); break;
+                    case 2: Console.Write("\\"); break;
+                    case 3: Console.Write("|"); break;
+                }
+                Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
+                Thread.Sleep(delay);
+            }
+        }
+
+        /// <summary>
+        /// Displays a blinking message
+        /// </summary>
+        /// <param name="message">The message to be displayed</param>
+        /// <param name="iterations">The number of blinking iterations</param>
+        /// <param name="delay">the time in milliseconds between each blink</param>
+        [ExcludeFromCodeCoverage]
+        public void DisplayBlinkingMessage(string message, int iterations = 10, int delay = 100)
+        {
+            string blank = new string(message.ToCharArray().Select(c => ' ').ToArray());
+            for (int counter = 0; counter < iterations; counter++)
+            {
+                switch (counter % 2)
+                {
+                    case 0:
+                        Console.Write(message);
+                        break;
+                    case 1:
+                        Console.Write(blank);
+                        break;
+                }
+                Console.SetCursorPosition(Console.CursorLeft - message.Length, Console.CursorTop);
+                Thread.Sleep(delay);
+            }
+            Console.WriteLine(message);
         }
 
     }
