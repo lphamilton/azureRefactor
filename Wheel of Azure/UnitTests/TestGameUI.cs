@@ -20,9 +20,7 @@ namespace UnitTests
 
             // Arrange
             var stringReader = new StringReader(FormatConsoleInput(consoleInput));
-            var stringWriter = new StringWriter();
             Console.SetIn(stringReader);
-            Console.SetOut(stringWriter);
             var sut = new GameUI();
 
             // Act
@@ -41,9 +39,7 @@ namespace UnitTests
 
             // Arrange
             var stringReader = new StringReader(FormatConsoleInput(consoleInput));
-            var stringWriter = new StringWriter();
             Console.SetIn(stringReader);
-            Console.SetOut(stringWriter);
             var sut = new GameUI();
 
             // Act
@@ -63,9 +59,7 @@ namespace UnitTests
 
             // Arrange
             var stringReader = new StringReader(FormatConsoleInput(consoleInput));
-            var stringWriter = new StringWriter();
             Console.SetIn(stringReader);
-            Console.SetOut(stringWriter);
             var sut = new GameUI();
             var phraseBoard = new PhraseBoard(phraseString);
             var player = new Player("Player");
@@ -90,9 +84,7 @@ namespace UnitTests
 
             // Arrange
             var stringReader = new StringReader(FormatConsoleInput(consoleInput));
-            var stringWriter = new StringWriter();
             Console.SetIn(stringReader);
-            Console.SetOut(stringWriter);
             var sut = new GameUI();
 
             // Act
