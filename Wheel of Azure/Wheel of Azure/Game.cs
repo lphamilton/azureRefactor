@@ -14,15 +14,15 @@ namespace Wheel_of_Azure
         //public Player playerOne;
         public List<Player> players = new List<Player>();
 
-        CategorizedPhrases catphrase = new CategorizedPhrases();
+        ICategorizedPhrases catphrase;
         
         private GameUI ui = new GameUI();
        // private const string HardCodedPhrase = "abc";
 
 
-        public Game()
+        public Game(ICategorizedPhrases catphrase)
         {
-            
+            this.catphrase = catphrase;
             phraseBoard = new PhraseBoard(catphrase.GetPhrase(catphrase.category));
             
         }
