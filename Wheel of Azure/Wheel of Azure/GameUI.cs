@@ -129,7 +129,6 @@ namespace Wheel_of_Azure
                         Console.WriteLine("Looks like you're too broke to buy a vowel. Try guessing a consonant instead.");
                         spinGuessLetter = SingleLettersOnly(Console.ReadLine());
                         isConsonant = !vowels.Contains(spinGuessLetter);
-                        Console.WriteLine("isConsonant: {0}", isConsonant);
                     }       
                 }
             }
@@ -163,7 +162,7 @@ namespace Wheel_of_Azure
             {
                 string playersString = String.Join(", ", players.Take(players.Count - 1).Select(p => p.Name))
                                        + " and " + players[players.Count - 1].Name;
-                Console.WriteLine($"\nWelsome to the Wheel of Azure {playersString}!");
+                Console.WriteLine($"\nWelcome to the Wheel of Azure {playersString}!");
 
             }
             Console.WriteLine();
