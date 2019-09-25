@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategorizedPhrases.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameUI.cs" />
     <Compile Include="PhraseBoard.cs" />

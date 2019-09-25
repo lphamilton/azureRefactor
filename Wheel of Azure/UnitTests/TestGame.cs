@@ -49,7 +49,8 @@ namespace UnitTests
         }
 
 
-        [Fact(Skip = "Will re-impliment this test once the game is complete.")]
+
+        [Fact(Skip = "randomized phrases, will add test later") ]
         public void TestProgramMain_OnePlayer()
         {
             // This is just to get code coverage on our main program :)

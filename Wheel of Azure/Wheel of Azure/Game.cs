@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,15 +13,18 @@ namespace Wheel_of_Azure
         public PhraseBoard phraseBoard;
         //public Player playerOne;
         public List<Player> players = new List<Player>();
-         
 
+        CategorizedPhrases catphrase = new CategorizedPhrases();
+        
         private GameUI ui = new GameUI();
-        private const string HardCodedPhrase = "abc";
+       // private const string HardCodedPhrase = "abc";
 
 
         public Game()
         {
-            phraseBoard = new PhraseBoard(HardCodedPhrase);
+            
+            phraseBoard = new PhraseBoard(catphrase.GetPhrase(catphrase.category));
+            
         }
 
         /// <summary>
@@ -36,8 +40,8 @@ namespace Wheel_of_Azure
             }
             int currentPlayer = 0;
             int roundWinner = 0;
-            
 
+            ui.DisplayCat(catphrase);
             ui.DisplayWelcomeMessage(players);
 
             while (!phraseBoard.IsGameOver())

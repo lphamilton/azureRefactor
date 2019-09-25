@@ -1,53 +1,62 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Wheel_of_Azure
 {
-    public class CategorizedPhrase
+    public class CategorizedPhrases
     {
-        public int r;
+        public string category;
+            public CategorizedPhrases()
+        {
+            RandomizeCat();
+        }
         
-        /*<summary>
-        
-             */
+
         //list of category strings
-        private List<string> categories = new List<string>
+        public readonly List<string> categories = new List<string>
         {
-            "Holiday",
-            "Movies",
-            "Microsoft",
-            "City"
+            "holiday",
+            "movies",
+            "microsoft",
+            "city"
         };
-        public string GetCat()
+        /* The category will be randomized*/
+
+        public void RandomizeCat()
         {
+           
             Random random = new Random();
-            r = random.Next(categories.Count);
-            string resCat = categories[r];
-            return resCat;
+            int r = random.Next(categories.Count);
+            string cat = categories[r];
+            category = cat;
 
         }
-        public string GetCatPhrase()
+
+        public string GetPhrase(string cat)
         {
+            
             string filePath;
-            switch (r)
+             switch (cat)
             {
-                case 0:
-                     filePath = Path.GetFullPath(@"..\..\CategorizedPhrases\holiday.txt");
+                case "holiday":
+                    filePath = Path.GetFullPath(@"..\..\CategorizedPhrases\holiday.txt");
                     break;
-                case 1:
+                case "movies":
                     filePath = Path.GetFullPath(@"..\..\CategorizedPhrases\movies.txt");
                     break;
-                case 2:
+                case "microsoft":
                     filePath = Path.GetFullPath(@"..\..\CategorizedPhrases\microsoft.txt");
                     break;
-                case 3:
+                case "city":
                     filePath = Path.GetFullPath(@"..\..\CategorizedPhrases\city.txt");
                     break;
                 default:
@@ -55,7 +64,7 @@ namespace Wheel_of_Azure
                     break;
 
             }
-            
+
             string readText = File.ReadAllText(filePath);
             string[] words = readText.Split(',');
             Random rand = new Random();
@@ -63,6 +72,7 @@ namespace Wheel_of_Azure
             string phrase = words[i];
             return phrase;
         }
-        
+
+
     }
 }
