@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,20 +13,23 @@ namespace Wheel_of_Azure
         public PhraseBoard phraseBoard;
         //public Player playerOne;
         public List<Player> players = new List<Player>();
-        private CategorizedPhrases catPhrase = new CategorizedPhrases();
 
-
+        CategorizedPhrases catphrase = new CategorizedPhrases();
+        
         private GameUI ui = new GameUI();
        // private const string HardCodedPhrase = "abc";
 
 
         public Game()
         {
-            string Category = catPhrase.GetCatPhrase()[0];
-            string Phrase = catPhrase.GetCatPhrase()[1];
-            Console.WriteLine("Your random category is going to be " + Category + "!");
-            Console.WriteLine(Phrase);
-            phraseBoard = new PhraseBoard(Phrase);
+            //string Category = catPhrase.GetCatPhrase()[0];
+            //string Phrase = catPhrase.GetCatPhrase()[1];
+            //Console.WriteLine("Your random category is going to be " + Category + "!");
+            //Console.WriteLine(Phrase);
+            
+            phraseBoard = new PhraseBoard(catphrase.GetPhrase(catphrase.category));
+            //Console.WriteLine("CAT: {0} ", catphrase.category);
+            //Console.WriteLine("CAT: {0} ", catphrase.GetPhrase(catphrase.category));
             //phraseBoard = new PhraseBoard(HardCodedPhrase);
         }
 
@@ -42,8 +46,8 @@ namespace Wheel_of_Azure
             }
             int currentPlayer = 0;
             int roundWinner = 0;
-            
 
+            ui.DisplayCat(catphrase);
             ui.DisplayWelcomeMessage(players);
 
             while (!phraseBoard.IsGameOver())

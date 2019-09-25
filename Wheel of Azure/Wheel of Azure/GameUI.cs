@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.IO;
 using System.Threading;
 using System.Diagnostics.CodeAnalysis;
+using System.ComponentModel;
 
 namespace Wheel_of_Azure
 {
@@ -48,8 +49,8 @@ namespace Wheel_of_Azure
             {
                 Console.Write("Please enter player {0}'s name: ", i + 1);
                 string name = Console.ReadLine();
-                names.Add((name == "") ? "Player " + (i+1) : name);
-            } 
+                names.Add((name == "") ? "Player " + (i + 1) : name);
+            }
             return names;
         }
 
@@ -151,6 +152,12 @@ namespace Wheel_of_Azure
             Console.WriteLine();
         }
 
+        internal void DisplayCat(CategorizedPhrases catphrase)
+        {
+            catphrase.RandomizeCat();
+            Console.WriteLine($"\n{catphrase.category}, !\n");
+
+        }
         /// <summary>
         /// Displays a message indicating the current player's turn.
         /// </summary>
@@ -183,8 +190,8 @@ namespace Wheel_of_Azure
         {
             var chars = board.GetBoardString();
 
-            string topAndBottom = "+" + String.Join("+", chars.Select(c =>(c==' ')? "   ":"---").ToArray()) + "+";
-            string middle = "|" + String.Join("|", chars.Select(c => (c=='*') ? "   ":" " + c + " ").ToArray()) + "|";
+            string topAndBottom = "+" + String.Join("+", chars.Select(c => (c == ' ') ? "   " : "---").ToArray()) + "+";
+            string middle = "|" + String.Join("|", chars.Select(c => (c == '*') ? "   " : " " + c + " ").ToArray()) + "|";
             Console.WriteLine();
             Console.WriteLine(topAndBottom);
             Console.WriteLine(middle);
@@ -199,7 +206,7 @@ namespace Wheel_of_Azure
         /// <param name="playerOne">The winning player.</param>
         internal void DisplayWinner(List<Player> players, int roundWinner)
         {
-            
+
             if (players.Count == 1)
                 Console.WriteLine($"\nYou win!");
             else
