@@ -16,16 +16,6 @@ namespace Wheel_of_Azure
     /// </summary>
     public class GameUI
     {
-        /// <summary>
-        /// Prompts player to enter their name and returns the value entered.
-        /// </summary>
-        /// <returns>a string containing the player's name.</returns>
-        //internal string GetPlayerName()
-        //{
-        //    Console.Write("Please enter your name: ");
-        //    string name = Console.ReadLine();
-        //    return name;
-        //}
 
         /// <summary>
         /// Prompts user to input the number of players and enter their names. Returns the list of player names.
@@ -59,7 +49,7 @@ namespace Wheel_of_Azure
         /// Prompts the player to indicate whether they want to Spin(1) or Solve(2).
         /// </summary>
         /// <returns>1 if players wishes to spin, 2 if the player wishes to solve.</returns>
-        internal int GetUserChoice()
+        public int GetUserChoice()
         {
             bool isNumeric = false;
             int userChoice;
@@ -76,7 +66,7 @@ namespace Wheel_of_Azure
         /// Prompts user to press a key so that the console remains displayed until the user wishes to exit.
         /// </summary>
         [ExcludeFromCodeCoverage]
-        internal void GetExit()
+        public void GetExit()
         {
             Console.Write("\nPress any key to exit: ");
 
@@ -102,7 +92,7 @@ namespace Wheel_of_Azure
         /// </summary>
         /// <param name="phraseBoard">The current PhraseBoard being guessed.</param>
         /// <returns>The letter the player has guessed as a character</returns>
-        internal char GetSpinGuessLetter(PhraseBoard phraseBoard, Player player)
+        public char GetSpinGuessLetter(PhraseBoard phraseBoard, Player player)
         {
             Console.Write("Guess a letter: ");
             string spinGuess = Console.ReadLine().ToLower();
@@ -152,7 +142,7 @@ namespace Wheel_of_Azure
         /// Prompts the player to solve the phrase and returns the response as a string.
         /// </summary>
         /// <returns>The player's guess for the phrase.</returns>
-        internal string GetSolveGuess()
+        public string GetSolveGuess()
         {
             Console.Write("Solve the phrase: ");
             string solveGuess = Console.ReadLine().ToLower();
