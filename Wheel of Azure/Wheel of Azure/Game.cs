@@ -115,6 +115,12 @@ namespace Wheel_of_Azure
                 return;
             }
 
+            if(wheelAmount == Wheel.LoseATurn)
+            {
+                turnOver = true;
+                return;
+            }
+
             // Ask the user to guess a letter
             char spinGuessLetter = ui.GetSpinGuessLetter(phraseBoard, playerOne);
 
