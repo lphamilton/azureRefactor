@@ -5,7 +5,9 @@ namespace Wheel_of_Azure
     public class Wheel
     {
         public const int LoseATurn = 0;
+        public const int Bankruptcy = -1;
         private Random random;
+
         public readonly int[] WheelOfAzure = {
                 2500,
                 600,
@@ -30,7 +32,10 @@ namespace Wheel_of_Azure
                 800,
                 500,
                 650,
-                500
+                500,
+                -1,
+                -1,
+                -1
         };
 
         public Wheel()

@@ -246,7 +246,9 @@ namespace Wheel_of_Azure
         internal void DisplayWheelAmount(int wheelAmount)
         {
             if (!Console.IsOutputRedirected) DisplaySpinner();
-            Console.WriteLine($"The wheel landed at ${wheelAmount}");
+
+            string wheelResponse = wheelAmount > 0 ? $"The wheel landed at ${wheelAmount}" : "The wheel landed on BANKRUPT. You lose all your money!";
+            Console.WriteLine(wheelResponse);
         }
 
         /// <summary>
