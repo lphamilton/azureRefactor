@@ -171,7 +171,7 @@ namespace Wheel_of_Azure
         /// Displays a randomly assigned category.
         /// </summary>
         /// <param name="catphrase"></param>
-        internal void DisplayCat(CategorizedPhrases catphrase)
+        internal void DisplayCat(ICategorizedPhrases catphrase)
         {
            
             Console.WriteLine($"\n Your category today will be >>{catphrase.category}<< !!!\n");

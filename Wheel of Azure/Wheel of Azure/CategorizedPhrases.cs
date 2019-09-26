@@ -12,14 +12,15 @@ using System.Threading.Tasks;
 
 namespace Wheel_of_Azure
 {
-    public class CategorizedPhrases
+    public class CategorizedPhrases : ICategorizedPhrases
     {
-        public string category;
-            public CategorizedPhrases()
+        public string category { get; set; }
+
+        public CategorizedPhrases()
         {
             RandomizeCat();
         }
-        
+
 
         //list of category strings
         public readonly List<string> categories = new List<string>
@@ -33,7 +34,7 @@ namespace Wheel_of_Azure
 
         public void RandomizeCat()
         {
-           
+
             Random random = new Random();
             int r = random.Next(categories.Count);
             string cat = categories[r];
@@ -43,9 +44,9 @@ namespace Wheel_of_Azure
 
         public string GetPhrase(string cat)
         {
-            
+
             string filePath;
-             switch (cat)
+            switch (cat)
             {
                 case "holiday":
                     filePath = Path.GetFullPath(@"..\..\CategorizedPhrases\holiday.txt");

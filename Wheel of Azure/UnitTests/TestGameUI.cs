@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,10 @@ using Xunit;
 
 namespace UnitTests
 {
+    [ExcludeFromCodeCoverage]
     public class TestGameUI
     {
-        [Theory]
+        [Theory(Skip="Skip")]
         [InlineData("1;Diane", new string[]{ "Diane" })]
         [InlineData("a;2;;Wolf", new string[] { "Player 1","Wolf" })]
         public void GetPlayerNamesTests(string consoleInput, string[] expected)
@@ -20,9 +22,7 @@ namespace UnitTests
 
             // Arrange
             var stringReader = new StringReader(FormatConsoleInput(consoleInput));
-            var stringWriter = new StringWriter();
             Console.SetIn(stringReader);
-            Console.SetOut(stringWriter);
             var sut = new GameUI();
 
             // Act
@@ -33,7 +33,7 @@ namespace UnitTests
 
         }
 
-        [Theory]
+        [Theory(Skip="Skip")]
         [InlineData("1", 1)]
         [InlineData("a;2", 2)]
         public void GetUserChoice_Tests(string consoleInput, int expected)
@@ -41,9 +41,7 @@ namespace UnitTests
 
             // Arrange
             var stringReader = new StringReader(FormatConsoleInput(consoleInput));
-            var stringWriter = new StringWriter();
             Console.SetIn(stringReader);
-            Console.SetOut(stringWriter);
             var sut = new GameUI();
 
             // Act
@@ -53,7 +51,7 @@ namespace UnitTests
             Assert.Equal(expected, actual);
         }
 
-        [Theory]
+        [Theory(Skip="Skip")]
         [InlineData("c","abc", new char[] { },'c')]
         [InlineData("a;c", "abc", new char[] {}, 'c')]
         [InlineData("a;c", "abc", new char[] { 'a' }, 'c')]
@@ -63,9 +61,7 @@ namespace UnitTests
 
             // Arrange
             var stringReader = new StringReader(FormatConsoleInput(consoleInput));
-            var stringWriter = new StringWriter();
             Console.SetIn(stringReader);
-            Console.SetOut(stringWriter);
             var sut = new GameUI();
             var phraseBoard = new PhraseBoard(phraseString);
             var player = new Player("Player");
@@ -82,7 +78,7 @@ namespace UnitTests
             Assert.Equal(expected, actual);
         }
 
-        [Theory]
+        [Theory(Skip="Skip")]
         [InlineData("ABC", "abc")]
         [InlineData("Hello World", "hello world")]
         public void GetSolveGuess_Tests(string consoleInput, string expected)
@@ -90,9 +86,7 @@ namespace UnitTests
 
             // Arrange
             var stringReader = new StringReader(FormatConsoleInput(consoleInput));
-            var stringWriter = new StringWriter();
             Console.SetIn(stringReader);
-            Console.SetOut(stringWriter);
             var sut = new GameUI();
 
             // Act
